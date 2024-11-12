@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 771aa8925d0482f731c1ca9bd3e6d9d1121889362972857137d7ff97d490a996
 
 build:
@@ -16,10 +16,11 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - django >=2.2
     - django-cms >=3.7
     - django-filer >=1.7
@@ -27,11 +28,11 @@ requirements:
     - djangocms-attributes-field >=1
     - djangocms-text-ckeditor >=3.1.0
     - django-entangled >=0.5.4,<0.6
-
 test:
   imports:
     - djangocms_frontend
   commands:
+    - python {{ python_min }}
     - pip check
   requires:
     - pip
