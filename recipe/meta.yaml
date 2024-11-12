@@ -32,9 +32,9 @@ test:
   imports:
     - djangocms_frontend
   commands:
-    - python {{ python_min }}
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
